@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="عرض تقديمي مبسط عن أساسيات الأمن السيبراني">
+  <title>أساسيات الأمن السيبراني</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="presentation" aria-live="polite">
+    <header class="topbar">
+      <span class="brand">CYBER<span>SAFE</span></span>
+      <span class="counter" id="counter">01 / 05</span>
+    </header>
+
+    <section class="slide active">
+      <div class="eyebrow">دليل مبسّط • التوعية الرقمية</div>
+      <h1>أساسيات<br><span>الأمن السيبراني</span></h1>
+      <p class="lead">خطوات بسيطة تساعدنا على حماية بياناتنا وحياتنا الرقمية.</p>
+      <div class="hero-mark" aria-hidden="true">⌁</div>
+      <div class="slide-foot">عرض تقديمي تعليمي</div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">01 — المفهوم</div>
+      <h2>ما هو الأمن السيبراني؟</h2>
+      <p class="lead">هو مجموعة من الوسائل والممارسات التي تهدف إلى حماية الأجهزة والشبكات والبيانات من الوصول غير المصرّح به أو الهجمات الرقمية.</p>
+      <div class="info-grid">
+        <article class="info-card"><span class="card-icon">▣</span><h3>حماية الأجهزة</h3><p>الحفاظ على أجهزتنا من الاختراق والبرامج الضارة.</p></article>
+        <article class="info-card"><span class="card-icon">◇</span><h3>حماية البيانات</h3><p>منع سرقة المعلومات الشخصية أو إساءة استخدامها.</p></article>
+        <article class="info-card"><span class="card-icon">⌘</span><h3>حماية الحسابات</h3><p>التأكد من أن الوصول إلى الحسابات يقتصر على أصحابها.</p></article>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">02 — المخاطر</div>
+      <h2>أنواع التهديدات الإلكترونية</h2>
+      <p class="lead">تتعدد أساليب الهجوم الرقمي، ومن أشهرها:</p>
+      <div class="threat-list">
+        <div class="threat"><b>01</b><div><h3>التصيد الاحتيالي</h3><p>رسائل أو روابط مزيفة تحاول سرقة كلمات المرور والبيانات.</p></div></div>
+        <div class="threat"><b>02</b><div><h3>البرامج الضارة</h3><p>برامج قد تتلف الملفات أو تتجسس على الجهاز.</p></div></div>
+        <div class="threat"><b>03</b><div><h3>كلمات المرور الضعيفة</h3><p>كلمات سهلة التخمين تجعل الحسابات أكثر عرضة للاختراق.</p></div></div>
+      </div>
+    </section>
+
+    <section class="slide">
+      <div class="eyebrow">03 — الوقاية</div>
+      <h2>كيف نحمي أنفسنا؟</h2>
+      <p class="lead">اتباع عادات رقمية آمنة يقلل كثيرًا من احتمالية التعرض للهجمات.</p>
+      <div class="tips">
+        <div class="tip"><span>✓</span> استخدم كلمة مرور قوية ومختلفة لكل حساب.</div>
+        <div class="tip"><span>✓</span> فعّل التحقق بخطوتين متى كان متاحًا.</div>
+        <div class="tip"><span>✓</span> لا تفتح الروابط أو المرفقات مجهولة المصدر.</div>
+        <div class="tip"><span>✓</span> حدّث نظام التشغيل والتطبيقات باستمرار.</div>
+        <div class="tip"><span>✓</span> تجنب مشاركة معلوماتك الشخصية مع جهات غير موثوقة.</div>
+      </div>
+    </section>
+
+    <section class="slide closing">
+      <div class="eyebrow">04 — الخلاصة</div>
+      <h2>كن واعيًا،<br><span>ابقَ آمنًا.</span></h2>
+      <p class="lead">الأمن السيبراني مسؤولية تبدأ من تصرفاتنا اليومية. فكّر قبل أن تضغط، واحمِ بياناتك دائمًا.</p>
+      <div class="thanks">شكرًا لحسن استماعكم</div>
+    </section>
+
+    <footer class="controls">
+      <button id="prev" class="nav-btn" type="button" aria-label="الشريحة السابقة">→</button>
+      <div class="dots" id="dots" aria-label="التنقل بين الشرائح"></div>
+      <button id="next" class="nav-btn primary" type="button" aria-label="الشريحة التالية">←</button>
+    </footer>
+  </main>
+  <script>
+    const slides = [...document.querySelectorAll('.slide')];
+    const counter = document.getElementById('counter');
+    const dots = document.getElementById('dots');
+    let current = 0;
+
+    slides.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'dot' + (i === 0 ? ' selected' : '');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', `الانتقال إلى الشريحة ${i + 1}`);
+      dot.addEventListener('click', () => showSlide(i));
+      dots.appendChild(dot);
+    });
+
+    function showSlide(index) {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === current));
+      [...dots.children].forEach((dot, i) => dot.classList.toggle('selected', i === current));
+      counter.textContent = `${String(current + 1).padStart(2, '0')} / ${String(slides.length).padStart(2, '0')}`;
+      document.getElementById('prev').disabled = current === 0;
+      document.getElementById('next').disabled = current === slides.length - 1;
+    }
+
+    document.getElementById('prev').addEventListener('click', () => showSlide(current - 1));
+    document.getElementById('next').addEventListener('click', () => showSlide(current + 1));
+    document.addEventListener('keydown', event => {
+      if (event.key === 'ArrowLeft') showSlide(current + 1);
+      if (event.key === 'ArrowRight') showSlide(current - 1);
+    });
+    showSlide(0);
+  </script>
+</body>
+</html>
